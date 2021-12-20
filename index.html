@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="js-file.js" defer></script>
     <meta charset="UTF-8">
@@ -11,9 +14,36 @@
 <body>
     <div class="container">
         <div class="header">
+            <img src="libraryIcon.jpg" alt="Book Icon" height="100px" width="150px">
             <h1>Library</h1> 
         </div>
         <div class="main">
+            <div class="add">
+                <button title="Add New Book" onclick="toggleForm()" class="addButton">+</button>
+            </div>
+            <div class="hiddenForm hidden">
+                <form id="addForm" onsubmit="return false">
+                    <div>
+                        Title:
+                        <input type="text" autofocus name="title" id="title">
+                    </div>
+                    <div>
+                        Author:
+                        <input type="text" name="author" id="author">
+                    </div>
+                    <div>
+                        Page Count:
+                        <input type="number" name="pages" id="pages">
+                    </div>
+                    <div>
+                        Read?
+                        <input type="checkbox" name="read" id="read">
+                    </div>
+                    <div>
+                        <input type="submit" name="submitForm" id="submitForm">
+                    </div>
+                </form>
+            </div>
             <div class="books">
 
             </div>
