@@ -1,4 +1,5 @@
-let myLibrary = [];
+// let myLibrary = [];
+let myLibrary = JSON.parse(localStorage.getItem("myLibrary") || "[]")
 
 class Book {
     constructor(title, author, pages, read) {
@@ -8,17 +9,17 @@ class Book {
         this.read = read
     }
 }
-const book1 = new Book('The Hobbit', 'J.R.R. Tolkien', 295, false)
-const book2 = new Book('The Bible', 'Random Dudes', 295, false)
-const book3 = new Book('Twilight', 'Some Horny Woman', 295, true)
-const book4 = new Book('The Flash: Rebirth', 'Comic guy', 295, false)
+// const book1 = new Book('The Hobbit', 'J.R.R. Tolkien', 295, false)
+// const book2 = new Book('The Bible', 'Random Dudes', 295, false)
+// const book3 = new Book('Twilight', 'Some Horny Woman', 295, true)
+// const book4 = new Book('The Flash: Rebirth', 'Comic guy', 295, false)
 // const book5 = new Book('The Flash: Rebirth', 'Comic guy', 295, false)
 // const book6 = new Book('The Flash: Rebirth', 'Comic guy', 295, false)
 // const book7 = new Book('The Flash: Rebirth', 'Comic guy', 295, false)
 
 
 // myLibrary.push(book1, book2, book3, book4, book5, book6, book7)
-myLibrary.push(book1, book2, book3, book4)
+// myLibrary.push(book1, book2, book3, book4)
 
 const bookDisplay = document.querySelector(".books")
 const form = document.querySelector("#addForm")
@@ -35,6 +36,7 @@ function createBook() {
     myLibrary.push(newBook)
     toggleForm()
     showBooks()
+    saveBooks(myLibrary)
 }
 
 function showBooks() {
@@ -79,6 +81,7 @@ function removeBook(id) {
     let bookToRemove = document.getElementById(id)
     bookToRemove.remove()
     myLibrary.splice(id, 1)
+    saveBooks(myLibrary)
     showBooks()
 }
 
@@ -89,7 +92,23 @@ function toggleRead(id) {
     } else {
         bookToToggle.read = true
     }
+    saveBooks(myLibrary)
     showBooks()
+}
+
+function getBooks() {
+    let myLibrary
+    if (localStorage.getItem("myLibrary") === null) {
+        myLibrary = []
+    } else {
+        myLibrary = JSON.parse(localStorage.getItem("myLibrary"))
+    }
+    console.log(myLibrary)
+    return myLibrary
+}
+
+function saveBooks(library) {
+    localStorage["myLibrary"] = JSON.stringify(myLibrary)
 }
 
 showBooks()
