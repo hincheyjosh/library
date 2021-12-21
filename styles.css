@@ -128,10 +128,12 @@ body {
     align-items: center;
     justify-content: center;
     margin: 30px;
+    font-weight: bolder;
 }
 
 input {
     width: 100%;
+    border-radius: 15px;
 }
 
 input[type=submit] {
