@@ -60,6 +60,9 @@ footer {
     }
 }
 
+h3 {
+    margin: 10px;
+}
 
 body {
     font-family: 'Goudy Bookletter 1911', serif;
@@ -112,7 +115,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 150px;
-    height: 300px;
+    height: 250px;
     align-items: center;
     justify-content: center;
     text-align: center;

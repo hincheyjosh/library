@@ -12,12 +12,13 @@ const book1 = new Book('The Hobbit', 'J.R.R. Tolkien', 295, false)
 const book2 = new Book('The Bible', 'Random Dudes', 295, false)
 const book3 = new Book('Twilight', 'Some Horny Woman', 295, true)
 const book4 = new Book('The Flash: Rebirth', 'Comic guy', 295, false)
-const book5 = new Book('The Flash: Rebirth', 'Comic guy', 295, false)
-const book6 = new Book('The Flash: Rebirth', 'Comic guy', 295, false)
-const book7 = new Book('The Flash: Rebirth', 'Comic guy', 295, false)
+// const book5 = new Book('The Flash: Rebirth', 'Comic guy', 295, false)
+// const book6 = new Book('The Flash: Rebirth', 'Comic guy', 295, false)
+// const book7 = new Book('The Flash: Rebirth', 'Comic guy', 295, false)
 
 
-myLibrary.push(book1, book2, book3, book4, book5, book6, book7)
+// myLibrary.push(book1, book2, book3, book4, book5, book6, book7)
+myLibrary.push(book1, book2, book3, book4)
 
 const bookDisplay = document.querySelector(".books")
 const form = document.querySelector("#addForm")
@@ -51,15 +52,10 @@ function showBooks() {
         const pages = document.createElement("h3")
         pages.textContent = `${book.pages} pages`
         newDiv.appendChild(pages)
-        const button = document.createElement("button")
-        button.textContent = `${book.read === true ? 'Mark Unread' : 'Mark Read'}`
-        button.className = "readToggle"
-        button.id = "readToggle"
-        newDiv.appendChild(button)
-        const removeButton = document.createElement("button")
-        removeButton.textContent = "Remove"
-        removeButton.className = "removeButton"
-        newDiv.appendChild(removeButton)
+        newDiv.innerHTML +=
+        `<button class="readToggle" onclick="toggleRead(${myLibrary.indexOf(book)})">${book.read === true? 'Mark Unread': 'Mark Read'}</button>`
+        newDiv.innerHTML +=
+        `<button class="removeButton" onclick="removeBook(${myLibrary.indexOf(book)})">Remove</button>`
         bookDisplay.appendChild(newDiv)
     })
     
@@ -77,6 +73,23 @@ function removeAllChildNodes(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
+}
+
+function removeBook(id) {
+    let bookToRemove = document.getElementById(id)
+    bookToRemove.remove()
+    myLibrary.splice(id, 1)
+    showBooks()
+}
+
+function toggleRead(id) {
+    let bookToToggle = myLibrary[id]
+    if (bookToToggle.read === true) {
+        bookToToggle.read = false
+    } else {
+        bookToToggle.read = true
+    }
+    showBooks()
 }
 
 showBooks()
